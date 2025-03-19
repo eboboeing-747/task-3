@@ -1,0 +1,22 @@
+html {
+    background-color: #111111;
+    color: white;
+    margin: 0% 10% 0% 10%;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+.fetch-button {
+    background-color: #111111;
+    color: white;
+    border: solid 1px white;
+    border-radius: 8px;
+}
+
+.fetch-button:hover {
+    background-color: white;
+    color: #111111;
+}
