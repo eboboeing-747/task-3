@@ -27,17 +27,46 @@ function addTask(id, title, contents)
     task_list.appendChild(new_task);
 }
 
-var el = document.getElementById('test');
-el.addEventListener('click', handleClick, true);
+const fetchButton = document.getElementById('fetch');
+fetchButton.addEventListener('click', fetchTasks, true);
+
+async function makeRequest(method, URL) {
+    try {
+        const response = await fetch(URL, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error('Error:', error);
+        return null;
+    }
+}
 
 function httpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.open( "GET", theUrl, true); // false for synchronous request
+    xmlHttp.responseType = "json";
     xmlHttp.send( null );
-    return xmlHttp.responseText;
+    return xmlHttp.response;
 }
 
-function handleClick() {
-    console.log(httpGet('https://localhost:7071/Interface/GetAllInterfaces'));
+function fetchTasks() {
+    let tasks = makeRequest('GET', 'http://localhost:3000/tasks')
+        .then(tasks => {
+            console.log(tasks);
+
+            for (let i = 0; i < tasks.length; i++)
+            {
+                addTask(i.toString(), tasks[i].title, tasks[i].completed);
+            }
+        })
 }

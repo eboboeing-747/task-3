@@ -9,14 +9,46 @@ header {
     justify-content: center;
 }
 
+.task-tile {
+    display: flex;
+    width: 60%;
+}
+
+.task-content {
+    border: solid 2px green;
+    border-radius: 10px;
+    padding: 10px;
+    list-style-type: none;
+    background-color: #242424;
+}
+
+.remove-task {
+    width: 10%;
+}
+
 .fetch-button {
     background-color: #111111;
     color: white;
     border: solid 1px white;
     border-radius: 8px;
+    padding: 4px;
 }
 
 .fetch-button:hover {
+    background-color: white;
+    color: #111111;
+}
+
+.add-button {
+    background-color: #111111;
+    color: white;
+    border: solid 1px white;
+    border-radius: 16px;
+    padding: 0px 8px 0px 8px;
+    font-size: 24px;
+}
+
+.add-button:hover {
     background-color: white;
     color: #111111;
 }
